@@ -1,28 +1,36 @@
+import { Reducer } from './nrgx-fake/ngrx';
+import { contadorReducer } from './contador/contador.reducer';
 import { Action } from './ngrx-fake/ngrx'
-import { dividirAction } from './contador/contador.actions'
 
-export function reducer( state = 10, action: Action) {
-  switch( action.type ) {
-    case 'INCREMENTAR':
-      return state += 1;
+// console.log( reducer(10, dividirAction) );
 
-    case 'DECREMENTAR':
-      return state -= 1;
+// Fabricamos un store
+class Store<T> {
+  // T -> es un tipo generico que nos dice que sera cualquier tipo que le pase y la variable seria del mismo tipo que le paso
+  // private state: T;
 
-    case 'MULTIPLICAR':
-      return state *= action.payload;
-
-    case 'DIVIDIR':
-      return state /= action.payload;
-
-    case 'RESET':
-      return state = 0;
-    
-    default:
-      return state;
+  constructor(
+    private reducer: Reducer<T>,
+    private state: T
+  ) {
   }
+
+  getState() {
+    return this.state;
+  }
+
+  // Metodo que ejecuta las funciones
+  dispatch( action: Action ) {
+
+    this.state = this.reducer(this.state, action);
+
+  }
+
+
 }
 
-console.log( reducer(10, dividirAction) );
-
+export const store = new Store(
+                contadorReducer, // Funcion sin ejecutar 
+                10 // Valor inicial
+              );
 
