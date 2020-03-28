@@ -1,5 +1,5 @@
 import { Action } from './../ngrx-fake/ngrx';
- 
+
 export function contadorReducer( state = 10, action: Action) {
   switch( action.type ) {
     case 'INCREMENTAR':
@@ -16,7 +16,7 @@ export function contadorReducer( state = 10, action: Action) {
 
     case 'RESET':
       return state = 0;
-    
+
     default:
       return state;
   }

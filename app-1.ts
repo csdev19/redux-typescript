@@ -1,6 +1,6 @@
-import { Reducer } from './nrgx-fake/ngrx';
+
 import { contadorReducer } from './contador/contador.reducer';
-import { Action } from './ngrx-fake/ngrx'
+import { Action, Reducer } from './ngrx-fake/ngrx'
 
 // console.log( reducer(10, dividirAction) );
 
